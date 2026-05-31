@@ -14,7 +14,7 @@ demo: main.o $(OBJECTS)
 
 grade: test tidy
 
-test: TestRunner.o $(OBJECTS) student_test
+test: TestRunner.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) TestRunner.o $(OBJECTS) -o test
 	./test
 
@@ -27,13 +27,13 @@ student_test: StudentTestRunner.o $(OBJECTS)
 	fi
 
 TestRunner.o: test.cpp DataProcessor.hpp TextAnalyzer.hpp SetOperations.hpp AlgorithmShowcase.hpp doctest.h
-	$(CXX) $(CXXFLAGS) --compile test.cpp -o TestRunner.o
+	$(CXX) $(CXXFLAGS) -c test.cpp -o TestRunner.o
 
 StudentTestRunner.o: StudentTest.cpp $(wildcard *.hpp) doctest.h
-	$(CXX) $(CXXFLAGS) --compile StudentTest.cpp -o StudentTestRunner.o
+	$(CXX) $(CXXFLAGS) -c StudentTest.cpp -o StudentTestRunner.o
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) --compile $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 DataProcessor.o: DataProcessor.cpp DataProcessor.hpp
 
